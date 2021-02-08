@@ -6,11 +6,11 @@ namespace Alura\Doctrine\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\OneToMany;
 
 /**
  * @Entity
@@ -30,7 +30,7 @@ class Aluno
     private string $nome;
 
     /**
-     * @ORM\OneToMany(targetEntity="Telefone", mappedBy="aluno")
+     * @OneToMany(targetEntity="Telefone", mappedBy="aluno", cascade={"remove", "persist"})
      */
     private $telefones;
 
@@ -55,10 +55,10 @@ class Aluno
         return $this;
     }
 
-    public function addTelefones(Telefone $telefone)
+    public function addTelefone(Telefone $telefone)
     {
         $this->telefones->add($telefone);
-        $this->setNome($this);
+        $telefone->setAluno($this);
 
         return $this;
     }
