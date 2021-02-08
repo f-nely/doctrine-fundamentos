@@ -3,11 +3,11 @@
 
 namespace Alura\Doctrine\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /** @Entity  */
 class Telefone
@@ -25,7 +25,7 @@ class Telefone
     private string $numero;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Aluno")
+     * @ManyToOne(targetEntity="Aluno")
      */
     private $aluno;
 
@@ -34,7 +34,7 @@ class Telefone
         return $this->id;
     }
 
-    public function setId(int $id): Telefone
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -45,7 +45,7 @@ class Telefone
         return $this->numero;
     }
 
-    public function setNumero(string $numero): Telefone
+    public function setNumero(string $numero): self
     {
         $this->numero = $numero;
         return $this;
@@ -56,7 +56,7 @@ class Telefone
         return $this->aluno;
     }
 
-    public function setAluno($aluno)
+    public function setAluno($aluno): self
     {
         $this->aluno = $aluno;
         return $this;
