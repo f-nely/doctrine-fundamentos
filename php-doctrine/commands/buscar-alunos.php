@@ -1,6 +1,5 @@
 <?php
 
-use Alura\Doctrine\Entity\Aluno;
 use Alura\Doctrine\Entity\Telefone;
 use Alura\Doctrine\Helper\EntityManagerFactory;
 
