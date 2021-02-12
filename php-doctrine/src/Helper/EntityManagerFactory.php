@@ -12,19 +12,22 @@ use Doctrine\ORM\Tools\Setup;
 class EntityManagerFactory
 {
     /** @return EntityManagerInterface
-     *  @throws ORMException
+     * @throws ORMException
      */
     public function getEntityManager(): EntityManagerInterface
     {
         $rootDir = __DIR__ . '/../..';
         $config = Setup::createAnnotationMetadataConfiguration([
             $rootDir . '/src'],
-        true
+            true
         );
         $connection = [
-          'driver' => 'pdo_sqlite',
-          'path' => $rootDir . '/var/data/banco.sqlite'
+            'driver' => 'pdo_mysql',
+            'host' => 'localhost',
+            'dbname' => 'curso_doctrine',
+            'user' => 'root',
+            'password' => '704802'
         ];
-        return EntityManager::create($connection ,$config);
+        return EntityManager::create($connection, $config);
     }
 }
